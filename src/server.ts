@@ -1,18 +1,13 @@
-import express from 'express';
+import express from 'express'
 
-const app = express();
-app.use(express.json());
+// eslint-disable-next-line import/no-unresolved
+import { categoriesRoutes } from './routes/categories.routes'
 
-const port = process.env.PORT || 3333;
+const port = process.env.PORT || 3333
 
-app.get("/", (req, res) => {
-  return res.json({ message: "Hello World"});
-})
+const app = express()
+app.use(express.json())
 
-app.post("/courses", (req, res) => {
-  const { name } = req.body;
+app.use(categoriesRoutes)
 
-  return res.json({ name });
-})
-
-app.listen(port, () => console.log(`Server is running on port ${port}`));
+app.listen(port, () => console.log(`Server is running on port ${port}`))
